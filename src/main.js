@@ -4,6 +4,9 @@ import router from '@/router'
 import { createPinia } from 'pinia'
 import persist from 'pinia-plugin-persistedstate'
 
+//引入我们的初始化样式
+import '@/styles/common.scss'
+
 const pinia = createPinia()
 pinia.use(persist)
 
