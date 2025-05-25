@@ -1,10 +1,7 @@
 <script setup></script>
 
 <template>
-  <div class="container">
-    <router-view></router-view>
-    <div class="test">test scss</div>
-  </div>
+  <router-view></router-view>
 </template>
 
 <style lang="scss" scoped>
