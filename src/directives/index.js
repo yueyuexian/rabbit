@@ -10,7 +10,7 @@ export const lazyPlugin = {
         // el: 指令绑定的元素
         // binding: binding.value 指令等于号后面表达式的值  此处为图片 url
         const { stop } = useIntersectionObserver(el, ([entry]) => {
-          console.log(entry.isIntersecting)
+          // console.log(entry.isIntersecting)
           if (entry.isIntersecting) {
             // 进入视口区域
             el.src = binding.value

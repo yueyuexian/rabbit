@@ -18,3 +18,9 @@ export const getNewGoodsService = () => request.get('/home/new')
  * 获取--新鲜好物
  */
 export const getHotGoodsService = () => request.get('/home/hot')
+/**
+ * 获取所有商品模块
+ */
+export const getGoodsService = () => {
+  return request.get('/home/goods')
+}
