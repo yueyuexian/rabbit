@@ -1,32 +1,11 @@
 <script setup>
-import { getBannerService } from '@/api/home'
-import { getSecondCategoryService } from '@/api/category.js'
-import { ref } from 'vue'
-import { useRoute } from 'vue-router'
-import { watch } from 'vue'
 import GoodsItem from '@/view/Home/components/GoodsItem.vue'
-const route = useRoute()
-let categoryData = ref({})
-async function getSecondCategory() {
-  const res = await getSecondCategoryService(route.params.id)
-  categoryData.value = res
-}
-
-watch(
-  () => route.params.id,
-  () => {
-    getSecondCategory()
-  },
-  { immediate: true }
-)
-
+import { useBanner } from './composables/useBanner'
+import { useCategory } from './composables/useCategory.js'
+// 获取分类数据
+const { categoryData } = useCategory()
 // 轮播图
-let bannerList = ref([])
-const getBannerList = async () => {
-  const res = await getBannerService(2)
-  bannerList.value = res
-}
-getBannerList()
+const { bannerList } = useBanner()
 </script>
 
 <template>
