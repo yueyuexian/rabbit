@@ -3,6 +3,7 @@ import { ref } from 'vue'
 import { getGoodsDetailService } from '@/api/detail.js'
 import { useRoute } from 'vue-router'
 import DetailHot from './components/DetailHot.vue'
+import ImageView from '@/components/ImgView/index.vue'
 
 // 商品详情数据
 const route = useRoute()
@@ -18,6 +19,7 @@ getGoods()
   <div class="xtx-goods-page">
     <div class="container" v-if="goodsData.details">
       <div class="bread-container">
+        <!-- 面包屑 -->
         <el-breadcrumb separator=">">
           <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
           <!-- 
@@ -40,7 +42,7 @@ getGoods()
           <div class="goods-info">
             <div class="media">
               <!-- 图片预览区 -->
-
+              <ImageView />
               <!-- 统计数量 -->
               <ul class="goods-sales">
                 <li>
