@@ -4,6 +4,7 @@ import { getGoodsDetailService } from '@/api/detail.js'
 import { useRoute } from 'vue-router'
 import DetailHot from './components/DetailHot.vue'
 import ImageView from '@/components/ImgView/index.vue'
+import XtxSku from '@/components/XtxSku/index.vue'
 
 // 商品详情数据
 const route = useRoute()
@@ -13,6 +14,11 @@ const getGoods = async () => {
   goodsData.value = res
 }
 getGoods()
+
+// sku 规格被操作时
+const skuChange = (sku) => {
+  console.log(sku)
+}
 </script>
 
 <template>
@@ -91,7 +97,7 @@ getGoods()
                 </dl>
               </div>
               <!-- sku组件 -->
-
+              <XtxSku :goods="goodsData" @change="skuChange" />
               <!-- 数据组件 -->
 
               <!-- 按钮组件 -->
