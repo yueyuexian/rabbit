@@ -1,14 +1,30 @@
 <script setup>
 import { ref, watch } from 'vue'
 import { useMouseInElement } from '@vueuse/core'
+
+// props适配图片列表
+// ✅ 正确写法：每个组件实例获取新的数组
+defineProps({
+  imageList: {
+    type: Array,
+    default: () => [] // 每次返回新数组
+  }
+})
+// ❌ 错误写法：所有组件共享同一个数组
+/* defineProps({
+  imageList: {
+    type: Array,
+    default: [] // 所有实例共享这个数组
+  }
+}); */
 // 图片列表
-const imageList = [
-  'https://yanxuan-item.nosdn.127.net/d917c92e663c5ed0bb577c7ded73e4ec.png',
-  'https://yanxuan-item.nosdn.127.net/e801b9572f0b0c02a52952b01adab967.jpg',
-  'https://yanxuan-item.nosdn.127.net/b52c447ad472d51adbdde1a83f550ac2.jpg',
-  'https://yanxuan-item.nosdn.127.net/f93243224dc37674dfca5874fe089c60.jpg',
-  'https://yanxuan-item.nosdn.127.net/f881cfe7de9a576aaeea6ee0d1d24823.jpg'
-]
+// const imageList = [
+//   'https://yanxuan-item.nosdn.127.net/d917c92e663c5ed0bb577c7ded73e4ec.png',
+//   'https://yanxuan-item.nosdn.127.net/e801b9572f0b0c02a52952b01adab967.jpg',
+//   'https://yanxuan-item.nosdn.127.net/b52c447ad472d51adbdde1a83f550ac2.jpg',
+//   'https://yanxuan-item.nosdn.127.net/f93243224dc37674dfca5874fe089c60.jpg',
+//   'https://yanxuan-item.nosdn.127.net/f881cfe7de9a576aaeea6ee0d1d24823.jpg'
+// ]
 // 1.小图切换大图显示
 const activeIndex = ref(0)
 const toggleBigImg = (index) => {
