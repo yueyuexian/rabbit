@@ -10,7 +10,7 @@ const logout = () => userStore.logout()
     <div class="container">
       <ul>
         <!-- 多模板渲染 区分登录状态和非登录状态 -->
-        <template v-if="true">
+        <template v-if="userStore.user.id">
           <li>
             <a href="javascript:;"><i class="iconfont icon-user"></i>周杰伦</a>
           </li>
