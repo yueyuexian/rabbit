@@ -20,12 +20,17 @@ const rules = {
   }
 }
 // 表单统一校验
+import { useUserStore } from '@/store/user.js'
+
+const userStore = useUserStore()
+
 const formRef = ref(null)
 const login = () => {
   // 调用表单的校验方法
-  formRef.value.validate((valid) => {
+  formRef.value.validate(async (valid) => {
     if (valid) {
-      alert('校验通过')
+      // 调用 store 的 登录action
+      userStore.login(loginData.value)
     }
   })
 }

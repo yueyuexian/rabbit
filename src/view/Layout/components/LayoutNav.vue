@@ -1,4 +1,9 @@
-<script setup></script>
+<script setup>
+import { useUserStore } from '@/store/user'
+const userStore = useUserStore()
+// 退出登录
+const logout = () => userStore.logout()
+</script>
 
 <template>
   <nav class="app-topnav">
@@ -10,7 +15,12 @@
             <a href="javascript:;"><i class="iconfont icon-user"></i>周杰伦</a>
           </li>
           <li>
-            <el-popconfirm title="确认退出吗?" confirm-button-text="确认" cancel-button-text="取消">
+            <el-popconfirm
+              title="确认退出吗?"
+              confirm-button-text="确认"
+              cancel-button-text="取消"
+              @confirm="logout"
+            >
               <template #reference>
                 <a href="javascript:;">退出登录</a>
               </template>
