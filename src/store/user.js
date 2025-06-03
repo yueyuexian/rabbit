@@ -18,7 +18,8 @@ export const useUserStore = defineStore(
     // 登录的 action
     const login = async (data) => {
       user.value = await loginService(data)
-      // 获取购物车信息
+      // 获取购物车信息  先合并本地购物车再获取
+      cartStore.mergeCart()
       cartStore.getCartList()
       // 提示用户登录成功
       ElMessage.success('登录成功')

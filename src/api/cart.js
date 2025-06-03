@@ -17,3 +17,9 @@ export const getCartListService = () => request.get('/member/cart')
 export const deleteCartService = (ids) => {
   return request.delete('/member/cart', { data: { ids } })
 }
+/**
+ * 合并购物车
+ */
+export const mergeCartService = (data) => {
+  return request.post('/member/cart/merge', data)
+}

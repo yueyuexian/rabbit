@@ -1,7 +1,12 @@
 // 封装购物车模块
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
-import { addCartService, getCartListService, deleteCartService } from '@/api/cart.js'
+import {
+  addCartService,
+  getCartListService,
+  deleteCartService,
+  mergeCartService
+} from '@/api/cart.js'
 import { useUserStore } from '@/store/user'
 import { ElMessage } from 'element-plus'
 
@@ -66,6 +71,19 @@ export const useCartStore = defineStore(
     const clearCart = () => {
       cartList.value = []
     }
+
+    // 合并购物车
+    const mergeCart = async () => {
+      await mergeCartService(
+        cartList.value.map((item) => {
+          return {
+            skuId: item.skuId,
+            selected: item.selected,
+            count: item.count
+          }
+        })
+      )
+    }
     // 单选功能
     const singleCheck = (skuId, selected) => {
       // 通过 skuId 找到要修改的那一项 把 selected值修改为传过来的值
@@ -121,7 +139,8 @@ export const useCartStore = defineStore(
       singleCheck,
       allCheck,
       clearCart,
-      getCartList
+      getCartList,
+      mergeCart
     }
   },
   {
