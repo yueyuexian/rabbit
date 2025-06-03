@@ -25,10 +25,22 @@ export const useCartStore = defineStore(
       }
     }
 
+    // 删除购物车
+    const delCart = (skuId) => {
+      // 思路：
+      // 1. 找到要删除项的下标值 - splice
+      // 2. 使用数组的过滤方法 - filter
+
+      // const idx =cartList.value.findIndex(item => item.skuId === skuId)
+      // cartList.value.splice(idx,1)
+      cartList.value = cartList.value.filter((item) => item.skuId !== skuId)
+    }
+
     // 以对象格式 return state 和 action
     return {
       cartList,
-      addCart
+      addCart,
+      delCart
     }
   },
   {
