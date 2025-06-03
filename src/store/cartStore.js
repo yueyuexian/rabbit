@@ -1,8 +1,10 @@
 // 封装购物车模块
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
-import { addCartService, getCartListService } from '@/api/cart.js'
+import { addCartService, getCartListService, deleteCartService } from '@/api/cart.js'
 import { useUserStore } from '@/store/user'
+import { ElMessage } from 'element-plus'
+
 export const useCartStore = defineStore(
   'cart',
   () => {
@@ -34,17 +36,27 @@ export const useCartStore = defineStore(
           cartList.value.push(goods)
         }
       }
+      // 提示用户加入购物车成功
+      ElMessage.success('加入购物车成功')
     }
 
     // 删除购物车
-    const delCart = (skuId) => {
-      // 思路：
-      // 1. 找到要删除项的下标值 - splice
-      // 2. 使用数组的过滤方法 - filter
+    const delCart = async (skuId) => {
+      if (isLogin.value) {
+        // 调用接口实现接口购物车中的删除功能
+        await deleteCartService([skuId])
+        cartList.value = await getCartListService()
+      } else {
+        // 思路：
+        // 1. 找到要删除项的下标值 - splice
+        // 2. 使用数组的过滤方法 - filter
 
-      // const idx =cartList.value.findIndex(item => item.skuId === skuId)
-      // cartList.value.splice(idx,1)
-      cartList.value = cartList.value.filter((item) => item.skuId !== skuId)
+        // const idx =cartList.value.findIndex(item => item.skuId === skuId)
+        // cartList.value.splice(idx,1)
+        cartList.value = cartList.value.filter((item) => item.skuId !== skuId)
+      }
+      // 提示用户删除商品成功
+      ElMessage.success('删除购物车商品成功')
     }
 
     // 单选功能

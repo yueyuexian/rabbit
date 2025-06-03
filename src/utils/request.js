@@ -32,7 +32,10 @@ request.interceptors.response.use(
   (err) => {
     const userStore = useUserStore()
     // 统一错误提示
-
+    ElMessage({
+      type: 'warning',
+      message: err.response.data.message
+    })
     // 401 token失效处理
     // 1. 清除本地用户信息
     // 2. 跳转到登录页
@@ -40,10 +43,6 @@ request.interceptors.response.use(
       // 说明未登录或token失效
       userStore.clearUserInfo()
       router.push('/login')
-      ElMessage({
-        type: 'warning',
-        message: err.response.data.message
-      })
     }
     return Promise.reject(err)
   }
