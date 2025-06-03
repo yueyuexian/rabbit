@@ -5,3 +5,8 @@ import request from '@/utils/request'
  * @returns
  */
 export const addCartService = (data) => request.post('/member/cart', data)
+
+/**
+ * 获取最新的购物车列表
+ */
+export const getCartListService = () => request.get('/member/cart')
