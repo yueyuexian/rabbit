@@ -13,15 +13,18 @@ export const useCartStore = defineStore(
     // 定义状态state - cartList
     const cartList = ref([])
 
+    // 获取最新购物车列表
+    const getCartList = async () => {
+      const res = await getCartListService()
+      cartList.value = res
+    }
     // 定义action - addCart 添加购物车
     const addCart = async (goods) => {
       const { skuId, count } = goods
       if (isLogin.value) {
         // 登录之后的加入购物车逻辑
         await addCartService({ skuId, count })
-        const res = await getCartListService()
-        console.log(res)
-        cartList.value = res
+        getCartList()
       } else {
         // 未登录 就走加入本地购物车逻辑
         // 已添加过 - count + 1
@@ -45,7 +48,7 @@ export const useCartStore = defineStore(
       if (isLogin.value) {
         // 调用接口实现接口购物车中的删除功能
         await deleteCartService([skuId])
-        cartList.value = await getCartListService()
+        getCartList()
       } else {
         // 思路：
         // 1. 找到要删除项的下标值 - splice
@@ -59,6 +62,10 @@ export const useCartStore = defineStore(
       ElMessage.success('删除购物车商品成功')
     }
 
+    // 清除购物车
+    const clearCart = () => {
+      cartList.value = []
+    }
     // 单选功能
     const singleCheck = (skuId, selected) => {
       // 通过 skuId 找到要修改的那一项 把 selected值修改为传过来的值
@@ -112,7 +119,9 @@ export const useCartStore = defineStore(
       addCart,
       delCart,
       singleCheck,
-      allCheck
+      allCheck,
+      clearCart,
+      getCartList
     }
   },
   {
