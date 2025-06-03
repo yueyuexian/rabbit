@@ -5,6 +5,7 @@ import HomeVue from '@/view/Home/index.vue'
 import CategoryVue from '@/view/Category/index.vue'
 import SubCategoryVue from '@/view/SubCategory/index.vue'
 import DetailVue from '@/view/Detail/index.vue'
+import CartList from '@/view/CartList/index.vue'
 const routes = [
   {
     path: '/',
@@ -14,7 +15,8 @@ const routes = [
       // 加 ? 表示可选
       { path: 'category/:id?', component: CategoryVue },
       { path: 'category/sub/:id', component: SubCategoryVue },
-      { path: 'detail/:id', component: DetailVue }
+      { path: 'detail/:id', component: DetailVue },
+      { path: 'cartlist', component: CartList }
     ]
   },
   { path: '/login', component: LoginVue }
