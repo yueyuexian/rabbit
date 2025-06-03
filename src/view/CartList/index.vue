@@ -20,7 +20,7 @@ const singleCheck = (skuId, selected) => {
           <thead>
             <tr>
               <th width="120">
-                <el-checkbox />
+                <el-checkbox :modelValue="cartStore.isAll" @change="cartStore.allCheck" />
               </th>
               <th width="400">商品信息</th>
               <th width="220">单价</th>
@@ -38,7 +38,7 @@ const singleCheck = (skuId, selected) => {
                 <!-- 
                   注意：
                   @change="(selected) => singleCheck(i.skuId, selected)"
-                  这种写法是为了在默认参数的基础上添加参数
+                  这种写法是为了在默认参数的基础上添加父组件参数
                  -->
                 <el-checkbox
                   :model-value="i.selected"
