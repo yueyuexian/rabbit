@@ -6,6 +6,7 @@ import CategoryVue from '@/view/Category/index.vue'
 import SubCategoryVue from '@/view/SubCategory/index.vue'
 import DetailVue from '@/view/Detail/index.vue'
 import CartList from '@/view/CartList/index.vue'
+import CheckoutVue from '@/view/Checkout/index.vue'
 const routes = [
   {
     path: '/',
@@ -16,7 +17,8 @@ const routes = [
       { path: 'category/:id?', component: CategoryVue },
       { path: 'category/sub/:id', component: SubCategoryVue },
       { path: 'detail/:id', component: DetailVue },
-      { path: 'cartlist', component: CartList }
+      { path: 'cartlist', component: CartList },
+      { path: 'checkout', component: CheckoutVue }
     ]
   },
   { path: '/login', component: LoginVue }
