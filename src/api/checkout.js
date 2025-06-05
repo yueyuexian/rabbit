@@ -1,8 +1,8 @@
-// 订单接口
+// 结算页接口
 import request from '@/utils/request.js'
 
 /**
- * 获取订单页数据
+ * 获取结算页数据
  */
 export const getCheckInfoService = () => request.get('/member/order/pre')
 /**
