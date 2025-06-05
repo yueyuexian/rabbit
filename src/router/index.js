@@ -8,7 +8,7 @@ import DetailVue from '@/view/Detail/index.vue'
 import CartList from '@/view/CartList/index.vue'
 import CheckoutVue from '@/view/Checkout/index.vue'
 import PayVue from '@/view/Pay/index.vue'
-import PayCallbackVue from '@/view/Pay/PayBack.vue.vue'
+import PayCallbackVue from '@/view/Pay/PayBack.vue'
 const routes = [
   {
     path: '/',
