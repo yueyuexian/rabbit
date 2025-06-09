@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import LoginVue from '@/view/Login/index.vue'
 import LayoutVue from '@/view/Layout/index.vue'
 import HomeVue from '@/view/Home/index.vue'
@@ -9,6 +9,10 @@ import CartList from '@/view/CartList/index.vue'
 import CheckoutVue from '@/view/Checkout/index.vue'
 import PayVue from '@/view/Pay/index.vue'
 import PayCallbackVue from '@/view/Pay/PayBack.vue'
+import MemberVue from '@/view/Member/index.vue'
+import UserInfoVue from '@/view/Member/components/UserInfo.vue'
+import UserOrderVue from '@/view/Member/components/UserOrder.vue'
+
 const routes = [
   {
     path: '/',
@@ -22,7 +26,15 @@ const routes = [
       { path: 'cartlist', component: CartList },
       { path: 'checkout', component: CheckoutVue },
       { path: 'pay', component: PayVue },
-      { path: 'paycallback', component: PayCallbackVue }
+      { path: 'paycallback', component: PayCallbackVue },
+      {
+        path: 'member',
+        component: MemberVue,
+        children: [
+          { path: 'user', component: UserInfoVue },
+          { path: 'order', component: UserOrderVue }
+        ]
+      }
     ]
   },
   { path: '/login', component: LoginVue }
