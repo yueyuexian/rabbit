@@ -31,6 +31,7 @@ const routes = [
         path: 'member',
         component: MemberVue,
         children: [
+          { path: '', redirect: '/member/user' },
           { path: 'user', component: UserInfoVue },
           { path: 'order', component: UserOrderVue }
         ]
